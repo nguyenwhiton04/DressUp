@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Dress Up Game</title>
+  <style>
+
+    body, html{
+        font-family: logic; 
+        overflow: hidden;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
+    
+    .hidden{
+        display: none;
+    }
+
+    #parent {
+        position: relative;
+        top: 0;
+        left: 0;
+        max-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    } 
+    
+    #vivian {
+        position: relative;
+        max-height: 50vh;
+        max-width: 100vw;
+        z-index: 0;
+    } 
+    
+    #hat, #shirt, #pants, #shoes {
+        position: absolute;
+        max-height: 50vh;
+        max-width: 100vw;
+        z-index: 1;
+    }
+
+    #button-selection{
+        width: 100%;
+        text-align: center;
+    }
+
+    button{
+        border-radius: 10px;
+        width: 20vw;
+        height: 5vh;
+        
+    }
+
+    #button-div{
+        text-align: center;
+        padding-top: 10vw;
+    }
+    #submit{
+        width: 50vw;
+        height:15vh;
+        font-size: 1rem;
+    }
+
+    #unapproved{
+        color: red;
+    }
+
+    .fade-in{
+        opacity: 0;
+        animation: fadeIn 2s ease forwards;
+    }
+
+    @keyframes fadeIn{
+        to{
+            opacity: 1;
+        }
+    }
+
+
+  </style>
+</head>
+<!--style="background-image: url('background.jpg');"*/-->
+<body style="background-image: url('background.jpg');">
+
+  <div id="parent" class="fade-in">
+    <img id="vivian" src="vivian.png">
+    <img id="hat">
+    <img id="shirt">
+    <img id="shoes">
+    <img id="pants">
+  </div>
+
+  <div id="button-selection" class="fade-in">
+    <button id="hat-button" onclick="changeHat()">hat</button>
+    <button id="shirt-button" onclick="changeShirt()">shirt</button>
+    <button id="pants-button" onclick="changePants()">pants</button>
+    <button id="shoes-button" onclick="changeShoes()">shoes</button>
+  </div>
+
+  <div id="button-div" class="fade-in">
+    <h2 class="hidden" id="unapproved">Outfit not approved by Chị Bảo...</h2>
+    <button id="submit" onclick="checkOutfit()">Submit</button>
+  </div>
+
+
+  <script>
+
+    var hatCounter = 0;
+    var shirtCounter = 0;
+    var pantsCounter = 0;
+    var shoesCounter = 0;
+
+    const hat = document.getElementById("hat");
+    const shirt = document.getElementById("shirt");
+    const pants = document.getElementById("pants");
+    const shoes = document.getElementById("shoes");
+
+    function changeHat(){
+        switch(hatCounter){
+            case 0:
+                hat.src = "hat1.png";
+                hatCounter++;
+                break;
+            case 1:
+                hat.src = "hat2.png";
+                hatCounter++;
+                break;
+            case 2:
+                hat.src = "hat3.png";
+                hatCounter++;
+                break;
+            case 3: 
+                hat.src = "";
+                hatCounter = 0;
+                break;
+        }
+    }
+
+    function changeShirt(){
+        switch(shirtCounter){
+            case 0:
+                shirt.src = "shirt1.png";
+                shirtCounter++;
+                break;
+            case 1:
+                shirt.src = "shirt2.png";
+                shirtCounter++;
+                break;
+            case 2:
+                shirt.src = "shirt3.png";
+                shirtCounter++;
+                break;
+            case 3: 
+                shirt.src = "";
+                shirtCounter = 0;
+                break;
+        }
+    }
+
+    function changePants(){
+        switch(pantsCounter){
+            case 0:
+                pants.src = "pants1.png";
+                pantsCounter++;
+                break;
+            case 1:
+                pants.src = "pants2.png";
+                pantsCounter++;
+                break;
+            case 2:
+                pants.src = "pants3.png";
+                pantsCounter++;
+                break;
+            case 3: 
+                pants.src = "";
+                pantsCounter = 0;
+                break;
+        }        
+    }
+
+    function changeShoes(){
+        switch(shoesCounter){
+            case 0:
+                shoes.src = "shoes1.png";
+                shoesCounter++;
+                break;
+            case 1:
+                shoes.src = "shoes2.png";
+                shoesCounter++;
+                break;
+            case 2:
+                shoes.src = "shoes3.png";
+                shoesCounter++;
+                break;
+            case 3: 
+                shoes.src = "";
+                shoesCounter = 0;
+                break;
+        }
+    }
+
+    const unapproved = document.getElementById("unapproved");
+
+    function checkOutfit(){
+        console.log("entered here");
+        if((shirtCounter == 1) && (pantsCounter == 2) && (shoesCounter == 3)){
+            console.log("Outfit approved!!");
+            window.location.href = "outro.html";
+        } else{
+            console.log("Outfit NOT approved");
+            unapproved.classList.remove("hidden");
+        }
+    }
+
+  </script>
+</body>
+</html>
